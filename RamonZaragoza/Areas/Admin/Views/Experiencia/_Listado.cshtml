@@ -6,7 +6,6 @@
 <link href="~/Content/PagedList.css" rel="stylesheet" />
 @using (Html.BeginForm("_Listado", "Experiencia", FormMethod.Post, new { id = "adminForm" }))
 {
-    
     @Html.Hidden("tipo", tipo)
     @Html.Hidden("nombreOrderBy", "")
     @Html.Hidden("tituloOrderBy", "")
@@ -60,7 +59,7 @@
             {
                 <tr>
                     <td>
-                        <a href="#">@expe.Nombre</a>
+                        <a href="@Url.Action("Acciones", "Experiencia", new { tipo= tipo, id = expe.id })">@expe.Nombre<span></span></a>
                     </td>
                     <td>@expe.Titulo</td>
                     <td class="text-center align-middle">@expe.Desde.ToString("dd/MM/yyyy")</td>

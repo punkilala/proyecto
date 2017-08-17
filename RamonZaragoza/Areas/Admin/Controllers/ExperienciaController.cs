@@ -52,7 +52,7 @@ namespace RamonZaragoza.Areas.Admin.Controllers
             }
             else // modificacion
             {
-
+                mExperiencia = mExperiencia.ObtenerExperiencia(id);
             }
             return View(mExperiencia);
         }

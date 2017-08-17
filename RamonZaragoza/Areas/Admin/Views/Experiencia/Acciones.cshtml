@@ -81,7 +81,7 @@
         <label>Descripción</label>
 
         @Html.TextAreaFor(e => e.Descripcion, new { @class = "form-control", @placeholder = "Ingrese su nombre" })
-        @Html.ValidationMessageFor(e => e.Titulo, "", new { @class = "label label-danger" })
+        @Html.ValidationMessageFor(e => e.Descripcion, "", new { @class = "label label-danger" })
     </div>
 
     <div class="well well-sm col-xs-12">

@@ -24,3 +24,16 @@ C:\Users\usuario\Documents\Visual Studio 2015\Projects\BackupRamonZaragoza\Model
 C:\Users\usuario\Documents\Visual Studio 2015\Projects\BackupRamonZaragoza\Models\obj\Debug\Models.csprojResolveAssemblyReference.cache
 C:\Users\usuario\Documents\Visual Studio 2015\Projects\BackupRamonZaragoza\Models\obj\Debug\Models.dll
 C:\Users\usuario\Documents\Visual Studio 2015\Projects\BackupRamonZaragoza\Models\obj\Debug\Models.pdb
+C:\Users\usuario\Documents\Visual Studio 2015\Projects\proyecto\Models\bin\Debug\proyecto.mdf
+C:\Users\usuario\Documents\Visual Studio 2015\Projects\proyecto\Models\bin\Debug\proyecto_log.ldf
+C:\Users\usuario\Documents\Visual Studio 2015\Projects\proyecto\Models\bin\Debug\Models.dll
+C:\Users\usuario\Documents\Visual Studio 2015\Projects\proyecto\Models\bin\Debug\Models.pdb
+C:\Users\usuario\Documents\Visual Studio 2015\Projects\proyecto\Models\bin\Debug\EntityFramework.dll
+C:\Users\usuario\Documents\Visual Studio 2015\Projects\proyecto\Models\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\usuario\Documents\Visual Studio 2015\Projects\proyecto\Models\bin\Debug\Helper.dll
+C:\Users\usuario\Documents\Visual Studio 2015\Projects\proyecto\Models\bin\Debug\Helper.pdb
+C:\Users\usuario\Documents\Visual Studio 2015\Projects\proyecto\Models\bin\Debug\EntityFramework.xml
+C:\Users\usuario\Documents\Visual Studio 2015\Projects\proyecto\Models\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\usuario\Documents\Visual Studio 2015\Projects\proyecto\Models\obj\Debug\Models.csprojResolveAssemblyReference.cache
+C:\Users\usuario\Documents\Visual Studio 2015\Projects\proyecto\Models\obj\Debug\Models.dll
+C:\Users\usuario\Documents\Visual Studio 2015\Projects\proyecto\Models\obj\Debug\Models.pdb

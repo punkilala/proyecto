@@ -35,6 +35,7 @@ namespace Models
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime Hasta { get; set; }
 
+        [Required]
         [Column(TypeName = "text")]
         public string Descripcion { get; set; }
 
@@ -87,6 +88,22 @@ namespace Models
             }
             return lista;
         }
+        public Experiencia ObtenerExperiencia(int id)
+        {
+            try
+            {
+                using(var bbdd= new ProyectoContexto())
+                {
+                    var experiencia = bbdd.Experiencia.Where(e => e.id == id).SingleOrDefault();
+                    return experiencia;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
 
         public bool GuardarExperiencia()
         {
@@ -103,7 +120,9 @@ namespace Models
                     }
                     else //modificacion registro
                     {
-
+                        bbdd.Entry(this).State = EntityState.Modified;
+                        bbdd.SaveChanges();
+                        result = true;
                     }
                 }
             }
