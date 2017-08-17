@@ -1,0 +1,4 @@
+c:\users\usuario\documents\visual studio 2015\Projects\RamonZaragoza\Helper\bin\Debug\Helper.dll
+c:\users\usuario\documents\visual studio 2015\Projects\RamonZaragoza\Helper\bin\Debug\Helper.pdb
+c:\users\usuario\documents\visual studio 2015\Projects\RamonZaragoza\Helper\obj\Debug\Helper.dll
+c:\users\usuario\documents\visual studio 2015\Projects\RamonZaragoza\Helper\obj\Debug\Helper.pdb

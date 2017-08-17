@@ -1,0 +1,42 @@
+﻿@model Models.Usuario
+@using (Html.BeginForm("_CambiarFoto", "Usuario", FormMethod.Post, new { id = "formCambFoto", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(u => u.id)
+    @Html.HiddenFor(u => u.Nombre)
+    <div class="form-group-sm">
+        <div class="col-xs-12 col-sm-4">
+            <div class="thumbnail">
+                @if (Model.Foto == "noFoto.jpg")
+                {
+                    <img id="miImagen" name="Actual" src="@Url.Content("~/Content/images/noFoto.jpg")" alt="@Model.Nombre" title="@Model.Nombre" />
+                }
+                else
+                {
+                    <img id="miImagen" name="Actual" src="@Url.Content("~/Uploads/"+ViewBag.Foto)" alt="@Model.Nombre" title="@Model.Nombre" />
+                }
+            </div>
+        </div>
+    </div>
+    <div class="form-group-sm">
+        <div class="col-xs-12 col-sm-8">
+            <label>Eliga una Foto</label>
+            @Html.TextBox("Foto", "", new
+       {
+           @class = "form-control",
+           @type = "file",
+           @style = "height: auto;"
+       })
+            <br />
+            <div class="well well-sm col-xs-12">
+                <div id="mensaje" class="col-xs-10"></div>
+                <div class="col-xs-2">
+                    <img id="cargando" style="display:none;" src="~/Content/images/ajax-loader.gif" />
+                    <button id="btnCambiar" data-ajax="true" class="btn btn-primary pull-right">Cambiar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+

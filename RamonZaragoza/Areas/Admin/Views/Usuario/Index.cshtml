@@ -1,0 +1,131 @@
+﻿@model Models.Usuario
+@{
+    ViewBag.Title = "Acerca de mí";
+
+}
+
+<div id="yo" class="page">
+    <h1 class="page-header">Acerca de mí</h1>
+
+    <!--INICIO FORMULARIO-->
+    @using (Ajax.BeginForm("GuardarUsuario","Usuario", new AjaxOptions()
+    {
+        HttpMethod = "POST",
+        InsertionMode = InsertionMode.Replace,
+        UpdateTargetId = "mensaje",
+        OnSuccess = "onSuccess",
+        LoadingElementId = "cargando",
+    },new { enctype = "multipart/form-data", id = "adminForm" }))
+    {
+        <div>
+
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#info" aria-controls="info" role="tab" data-toggle="tab">Información</a></li>
+                <li role="presentation"><a href="#ubicacion" aria-controls="ubicacion" role="tab" data-toggle="tab">Ubicación</a></li>
+                <li role="presentation"><a href="#social" aria-controls="social" role="tab" data-toggle="tab">Social</a></li>  
+            </ul>
+
+            <div class="tab-content">
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(u => u.id)
+                @Html.HiddenFor(u=>u.Foto)
+                <!-- TAB  INFORMACIÓN -->
+                <div role="tabpanel" class="tab-pane active" id="info">
+                    <div class="form-group">
+                        <label>Nombre</label>
+                        @Html.TextBoxFor(u => u.Nombre, new { @class = "form-control", @placeholder = "Ingrese su nombre" })
+                        @Html.ValidationMessageFor(u => u.Nombre, "", new { @class = "label label-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label>Apellido</label>
+                        @Html.TextBoxFor(u => u.Apellido, new { @class = "form-control", @placeholder = "Ingrese su nombre" })
+                        @Html.ValidationMessageFor(u => u.Apellido, "", new { @class = "label label-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label>E-mail</label>
+                        @Html.TextBoxFor(u => u.Email, new { @class = "form-control", @placeholder = "Ingrese su nombre" })
+                        @Html.ValidationMessageFor(u => u.Email, "", new { @class = "label label-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label>Teléfono</label>
+                        @Html.TextBoxFor(u => u.Telefono, new { @class = "form-control", @placeholder = "Ingrese su nombre" })
+                        @Html.ValidationMessageFor(u => u.Telefono, "", new { @class = "label label-danger" })
+                    </div>   
+                </div>
+                <!-- TAB  UBICACION -->
+                <div role="tabpanel" class="tab-pane" id="ubicacion">
+                    <div class="form-group">
+                        <label>País</label>
+                        @Html.DropDownListFor(u => u.Pais_id, null, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        <label>Ciudad</label>
+                        @Html.TextBoxFor(u => u.Ciudad, new { @class = "form-control", @placeholder = "Ingrese su ciudad" })
+                        @Html.ValidationMessageFor(u => u.Ciudad, "", new { @class = "label label-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label>Dirección</label>
+                        @Html.TextAreaFor(u => u.Direccion, new { @class = "form-control", @placeholder = "Ingrese su direccion" })
+                        @Html.ValidationMessageFor(u => u.Direccion, "", new { @class = "label label-danger" })
+                    </div>
+                </div>
+                <!-- TAB  SOCIAL -->
+                <div role="tabpanel" class="tab-pane" id="social">
+                    <div class="form-group">
+                        <label>Facebook</label>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-facebook"></i>
+                            </span>
+                            @Html.TextBoxFor(u => u.Facebook, new { @class = "form-control", @placeholder = "ingrese su Facebook" })
+                            @Html.ValidationMessageFor(u => u.Facebook, "", new { @class = "label label-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Twitter</label>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-twitter"></i>
+                            </span>
+                            @Html.TextBoxFor(u => u.Twitter, new { @class = "form-control", @placeholder = "ingrese su Twitter" })
+                            @Html.ValidationMessageFor(u => u.Twitter, "", new { @class = "label label-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>YouTube</label>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-youtube"></i>
+                            </span>
+                            @Html.TextBoxFor(u => u.YouTube, new { @class = "form-control", @placeholder = "ingrese su Facebook" })
+                            @Html.ValidationMessageFor(u => u.YouTube, "", new { @class = "label label-danger" })
+                        </div>
+                    </div>
+                </div>     
+            </div><!--FIN TAB PANEL-->
+
+        </div>
+
+        <div class="well well-sm col-xs-12">
+            <div id="mensaje" class="col-xs-10"></div>
+            <div class="col-xs-2 text-right">
+                <img id="cargando" src="~/Content/images/ajax-loader.gif" style="display:none;" />
+                <button id="btnGuardar" class="btn btn-primary" type="submit">Guardar</button>
+            </div>
+        </div>
+
+    }<!--FIN FORMULARIO-->
+
+</div>
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+<!--pidiendo una validacion de nuestro formulario en lado de cliente, esta validacion se hace conforme a las anotaciones-->
+@Scripts.Render("~/bundles/jqueryval")
+
+<script>
+    $(document).ready(function () {
+        $('#Nombre').change(function () {
+            $('#mi-nombre').text($('#Nombre').val());
+        })
+    })
+</script>

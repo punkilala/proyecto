@@ -1,0 +1,129 @@
+﻿@model Models.Experiencia
+@{
+    if (Model.Tipo ==1 && Model.id ==0)
+    {
+        ViewBag.Title = "Nueva Experiencia";
+    }
+    if (Model.Tipo == 1 && Model.id != 0)
+    {
+        ViewBag.Title = "Edición Experiencia";
+    }
+    if (Model.Tipo == 2 && Model.id == 0)
+    {
+        ViewBag.Title = "Nuevo Estudio";
+    }
+    if (Model.Tipo == 1 && Model.id != 0)
+    {
+        ViewBag.Title = "Editar Estudio";
+    }
+
+}
+
+<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-ui-1.12.1.js"></script>
+<script src="~/Scripts/jquery.ui.datepicker-es.js"></script>
+<script src="~/Scripts/jquery.maskedinput.js"></script>
+
+
+<h2 class="page-header">@ViewBag.Title</h2>
+
+@using (Ajax.BeginForm("Agregar", new AjaxOptions()
+{
+    HttpMethod = "POST",
+    InsertionMode = InsertionMode.Replace,
+    UpdateTargetId= "mensaje",
+    LoadingElementId= "cargando",
+    OnSuccess= "onSuccess"
+}))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(e=>e.id)
+    @Html.HiddenFor(e=>e.Tipo)
+    @Html.HiddenFor(e=>e.Usuario_id)
+    <div class="form-group col-xs-12 col-sm-6">
+        @if (Model.Tipo == 1)
+        {<label>Empresa</label>}
+        else
+        {
+            {<label>Estudios</label>}
+        }
+        @Html.TextBoxFor(e => e.Nombre, new { @class = "form-control", @placeholder = "Ingrese su nombre" })
+        @Html.ValidationMessageFor(e => e.Nombre, "", new { @class = "label label-danger" })
+    </div>
+    <div class="form-group col-xs-12 col-sm-6">
+        @if (Model.Tipo == 1)
+        {<label>Cargo</label>}
+        else
+        {<label>Centro</label>}
+
+        @Html.TextBoxFor(e => e.Titulo, new { @class = "form-control", @placeholder = "Ingrese su nombre" })
+        @Html.ValidationMessageFor(e => e.Titulo, "", new { @class = "label label-danger" })
+    </div>
+
+    <div class="form-group col-xs-12 col-sm-3">
+        <label>Desde</label>
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+            @Html.EditorFor(e => e.Desde, new { htmlAttributes = new { @class = "form-control"} })
+            @Html.ValidationMessageFor(e => e.Desde, "", new { @class = "label label-danger" })
+        </div>
+    </div>
+    <div class="form-group col-xs-12 col-sm-3">
+        <label>Hasta</label>
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+            @Html.EditorFor(e => e.Hasta, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(e => e.Hasta, "", new { @class = "label label-danger" })
+        </div>
+    </div>
+
+    <div class="form-group col-xs-12 col-sm-6">
+        <label>Descripción</label>
+
+        @Html.TextAreaFor(e => e.Descripcion, new { @class = "form-control", @placeholder = "Ingrese su nombre" })
+        @Html.ValidationMessageFor(e => e.Titulo, "", new { @class = "label label-danger" })
+    </div>
+
+    <div class="well well-sm col-xs-12">
+        <div id="mensaje" class="col-xs-10"></div>
+        <div class="col-xs-2 text-right">
+            <img id="cargando" src="~/Content/images/ajax-loader.gif" style="display:none;" />
+            <button id="btnGuardar" class="btn btn-primary" type="submit" >Guardar</button>
+        </div>
+    </div>
+}
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <!--pidiendo una validacion de nuestro formulario en lado de cliente, esta validacion se hace conforme a las anotaciones-->
+    @Scripts.Render("~/bundles/jqueryval")
+    @section Scripts {
+        <script>  
+            
+            $("#Desde").datepicker({ dateFormat: "dd/mm/yy" }).mask("99/99/9999");
+            $("#Hasta").datepicker({ dateFormat: "dd/mm/yy" }).mask("99/99/9999");
+
+            //Deshabilitar dias futuros
+            $("#Desde").datepicker("option", "maxDate", "+0m +0d");
+            $("#Hasta").datepicker("option", "maxDate", "+0m +0d");
+
+            //Mostrar rango de 50 años
+            $("#Desde").datepicker("option", "yearRange", "-50:+0");
+            $("#Hasta").datepicker("option", "yearRange", "-50:+0");
+
+            //evitar que la validacion cliente de error ya que solo valida mm/dd/yyyy
+            // se hace uso de la libreria maskedinput para enmascarar los input de fecha y salvar la validacion
+            $.validator.addMethod('date',
+            function (value, element, params) {
+                if (this.optional(element)) {
+                    return true;
+                }
+                var ok = true;
+                try {
+                    $.datepicker.parseDate('dd/mm/yy', value);
+                }
+                catch (err) {
+                    ok = false;
+                }
+                return ok;
+            });
+        </script>
+    }

@@ -1,0 +1,97 @@
+﻿@using PagedList.Mvc; 
+@using PagedList;
+@{
+    int tipo = ViewBag.Tipo;
+}
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+@using (Html.BeginForm("_Listado", "Experiencia", FormMethod.Post, new { id = "adminForm" }))
+{
+    
+    @Html.Hidden("tipo", tipo)
+    @Html.Hidden("nombreOrderBy", "")
+    @Html.Hidden("tituloOrderBy", "")
+    @Html.Hidden("desdeOrderBy", "")
+    @Html.Hidden("hastaOrderBy", "")
+    @Html.Hidden("pagina", "")
+
+    <table class="table table-striped table-bordered table-condensed table-hover">
+        <thead>
+            <tr id="miTabla">
+                @if (tipo == 1)
+                {
+                    <th style="width:20%;"><a href="#" class="filtro" id="nombreOrder">Empresa</a></th>
+                    <th style="width:30%;"><a href="#" class="filtro" id="tituloOrder">Cargo</a></th>
+                }
+                else
+                {
+                    <th style="width:20%;"><a href="#" class="filtro"  id="nombreOrder">Estudios</a></th>
+                    <th style="width:30%;"><a href="#" class="filtro"  id="tituloOrder">Centro</a></th>
+                }
+                <th class="text-center" style="width:5%;"><a href="#" class="filtro"  id="desdeOrder">Desde</a></th>
+                <th class="text-center" style="width:5%;"><a href="#" class="filtro"  id="hastaOrder">Hasta</a></th>
+                <th style="width:1%;"><button id="btnEliminar" type="button" class="btn btn-danger btn-xs">Eliminar</button></th>
+            </tr>
+            <!--FILTRO-->
+            <tr>
+                <th>
+                    <div class="col-xs-10 col-xs-offset-1 input-group text-center">
+                        @Html.TextBox("porNombre", null, new { @class = "form-control input-sm" })
+                        <span class="input-group-btn">
+                            <button id="btn-porNombre" class="btn btn-default btn-sm" type="button">X</button>
+                        </span>
+                    </div>
+                </th>
+                <th>
+                    <div class="col-xs-10 col-xs-offset-1 input-group text-center">
+                        @Html.TextBox("porTitulo", null, new { @class = "form-control input-sm" })
+                        <span class="input-group-btn">
+                            <button id="btn-porTitulo" class="btn btn-default btn-sm" type="button">X</button>
+                        </span>
+                    </div>
+                </th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>  
+       </thead>
+        <tbody>
+
+            @foreach (var expe in ViewBag.Listado)
+            {
+                <tr>
+                    <td>
+                        <a href="#">@expe.Nombre</a>
+                    </td>
+                    <td>@expe.Titulo</td>
+                    <td class="text-center align-middle">@expe.Desde.ToString("dd/MM/yyyy")</td>
+                    <td class="text-center align-middle">@expe.Hasta.ToString("dd/MM/yyyy")</td>
+                    <td class="text-center"><input type="checkbox" class="seleccion" name="idEliminar" value="@expe.id" /></td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="col-xs-12 col-sm-1">
+                <label>Por Página...</label>
+            </div>
+            <div class="col-xs-12 col-sm-2">
+                @Html.DropDownList("displayNum", new List<SelectListItem> {
+                            new SelectListItem {Text="Uno",Value="1" },
+                            new SelectListItem {Selected=true, Text="Cinco", Value="5" },
+                            new SelectListItem {Text="Diez", Value="10" },
+                            new SelectListItem {Text="Veinte", Value="20" }
+                        }, new { @class = "form-control input-sm" })
+            </div>
+            <div class="col-xs-12 col-sm-9">
+                @Html.PagedListPager((IPagedList)ViewBag.Listado, page => Url.Action("Index",
+           new
+           {
+               pagina = page
+           }))
+            </div>
+        </div>
+    </div>
+
+}

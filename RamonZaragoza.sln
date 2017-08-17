@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RamonZaragoza", "RamonZaragoza\RamonZaragoza.csproj", "{384B0355-A22B-4EBB-BCC2-52C7F56B3EA7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{7C950604-DD61-488A-8648-483E39588B49}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Helper", "Helper\Helper.csproj", "{DE461421-35C3-4DF8-8E09-57A6A9F1F62C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{384B0355-A22B-4EBB-BCC2-52C7F56B3EA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{384B0355-A22B-4EBB-BCC2-52C7F56B3EA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{384B0355-A22B-4EBB-BCC2-52C7F56B3EA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{384B0355-A22B-4EBB-BCC2-52C7F56B3EA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C950604-DD61-488A-8648-483E39588B49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C950604-DD61-488A-8648-483E39588B49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C950604-DD61-488A-8648-483E39588B49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C950604-DD61-488A-8648-483E39588B49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE461421-35C3-4DF8-8E09-57A6A9F1F62C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE461421-35C3-4DF8-8E09-57A6A9F1F62C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE461421-35C3-4DF8-8E09-57A6A9F1F62C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE461421-35C3-4DF8-8E09-57A6A9F1F62C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

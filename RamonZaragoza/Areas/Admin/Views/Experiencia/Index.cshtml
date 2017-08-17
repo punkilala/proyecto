@@ -1,0 +1,17 @@
+﻿<script src="~/Scripts/paginacion.js"></script>
+@{
+    int tipo = ViewBag.Tipo;
+}
+
+<div id="experiencia" class="page">
+
+    <h1 class="page-header remove-margin">
+        @Html.ActionLink("Agregar", "Acciones", "Experiencia", new { tipo = tipo }, new { @class = "btn btn-primary pull-right" })
+        @ViewBag.Title
+    </h1>
+
+    <div id="parcial" class="col-sm-12">
+        @Html.Action("_Listado", "Experiencia", new { tipo = tipo })
+    </div>
+
+</div>
