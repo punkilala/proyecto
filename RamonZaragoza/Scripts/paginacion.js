@@ -38,7 +38,7 @@ $(document).ready(function () {
     });
 
     //escuchar enlaces solo envio por ajax las ordenaciones y la paginacion
-    $('body').on('click', 'a', function () {
+    $('body').on('click', 'a', function () {;
         //es paginacion
         //la paginacion su ul tiene una clase llamada pagination
         var ul = $(this).closest('ul');

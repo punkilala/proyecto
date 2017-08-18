@@ -209,6 +209,8 @@
     <Content Include="Areas\Admin\Views\Experiencia\_Listado.cshtml" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Areas\Admin\Views\Habilidades\_Listado.cshtml" />
+    <Content Include="Areas\Admin\Views\Habilidades\Acciones.cshtml" />
     <None Include="Scripts\jquery-1.11.3.intellisense.js" />
     <Content Include="Scripts\jquery-1.11.3.js" />
     <Content Include="Scripts\jquery-1.11.3.min.js" />

@@ -1,0 +1,113 @@
+﻿@using PagedList.Mvc;
+@using PagedList;
+@{ 
+    IPagedList<Models.Habilidad> habilidades = ViewBag.Listado;
+}
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+
+@using (Html.BeginForm("_Listado", "Habilidades", FormMethod.Post, new { id = "adminForm", onsubmit = "return false;" }))
+{
+    @Html.Hidden("nombreOrderBy","")
+    @Html.Hidden("tituloOrderBy","")
+    @Html.Hidden("pagina", "")
+    <table class="table table-striped table-bordered table-condensed table-hover">
+        <thead>
+            <!--ID miTabla se utilizara en jquery para seleccionar la ordenacion correcta-->
+            <tr id="miTabla">
+                <th width="60%">
+                    <a href="#" class="filtro" id="nombreOrder">Habilidad</a>
+                </th>
+                <th>
+                    <a href="#" class="filtro" id="tituloOrder">Nivel</a>
+                </th>
+                <th width="1%;">
+                    <button type="button" id="btnEliminar" class="btn btn-danger btn-xs">Eliminar</button>
+                </th>
+            </tr>
+            <!--FILTRO-->
+            <tr>
+                <th>
+                    <div class="col-xs-7 input-group">
+                        @Html.TextBox("porNombre", "", new { @class = "form-control input-sm" })
+                        <span class="input-group-btn">
+                            <button id="btn-porNombre" class="btn btn-default btn-sm" type="button">X</button>
+                        </span>
+                    </div>
+                </th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var habilidad in habilidades)
+            {
+                <tr>
+                    <td style="vertical-align: middle;">
+                        <a href="@Url.Action("Acciones", "Habilidades", new { id = habilidad.id })">@habilidad.Nombre</a>
+                    </td>
+                    <td>
+                        @{
+                            var pardillo = 0; var intermedio = 0; var dios = 0;
+                            pardillo = habilidad.Dominio - 45;
+                            if (pardillo <= 0)
+                            {
+                                pardillo = habilidad.Dominio;
+                            }
+                            else
+                            {
+                                pardillo = 45;
+                                intermedio = habilidad.Dominio - 80;
+                                if (intermedio <= 0)
+                                {
+                                    intermedio = 35 + intermedio;
+                                }
+                                else
+                                {
+                                    intermedio = 35;
+                                    dios = habilidad.Dominio - 80;
+                                }
+                            }
+                        }
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-danger" role="progressbar" style="width:@pardillo%">
+
+                            </div>
+                            <div class="progress-bar progress-bar-warning" role="progressbar" style="width:@intermedio%">
+
+                            </div>
+                            <div class="progress-bar progress-bar-success" role="progressbar" style="width:@dios%">
+
+                            </div>
+                        </div>@habilidad.Dominio%
+                    </td>
+                    <td
+                         class="text-center"><input type="checkbox" class="seleccion" name="idEliminar" value="@habilidad.id" />
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="col-xs-12 col-sm-1">
+                <label>Por Página...</label>
+            </div>
+            <div class="col-xs-12 col-sm-2">
+                @Html.DropDownList("displayNum", new List<SelectListItem> {
+                            new SelectListItem {Text="Uno",Value="1" },
+                            new SelectListItem {Selected=true, Text="Cinco", Value="5" },
+                            new SelectListItem {Text="Diez", Value="10" },
+                            new SelectListItem {Text="Veinte", Value="20" }
+                        }, new { @class = "form-control input-sm" })
+            </div>
+            <div class="col-xs-12 col-sm-9">
+                @Html.PagedListPager((IPagedList)ViewBag.Listado, page => Url.Action("Index",
+                   new
+                   {
+                       pagina = page
+                   }))
+            </div>
+        </div>
+    </div>
+}
