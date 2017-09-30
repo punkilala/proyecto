@@ -19,6 +19,7 @@ namespace Models
         public string parla { get; set; }
         public string coño { get; set; }
         public string b4 { get; set; }
+        public string cambioMaster { get; set; }
 
     }
 }
