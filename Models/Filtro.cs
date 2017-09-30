@@ -23,5 +23,6 @@ namespace Models
         public string ahoraenRama { get; set; }
         public int canelaEnRama { get; set; }
         public bool avancazmos { get; set; }
+        public DateTime vamos { get; set; }
     }
 }
