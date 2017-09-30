@@ -14,5 +14,6 @@ namespace Models
         public string tituloOrderBy { get; set; }
         public string desdeOrderBy { get; set; }
         public string hastaOrderBy { get; set; }
+        public string hola { get; set; }
     }
 }
