@@ -20,6 +20,7 @@ namespace Models
         public string coño { get; set; }
         public string b4 { get; set; }
         public string cambioMaster { get; set; }
+        public string ahoraenRama { get; set; }
 
     }
 }
