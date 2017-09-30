@@ -21,6 +21,7 @@ namespace Models
         public string b4 { get; set; }
         public string cambioMaster { get; set; }
         public string ahoraenRama { get; set; }
-
+        public int canelaEnRama { get; set; }
+        public bool avancazmos { get; set; }
     }
 }
